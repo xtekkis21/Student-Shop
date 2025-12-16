@@ -84,3 +84,31 @@ if(backToTop){
 		}
 	});
 }
+
+//ITEM PAGE
+
+const detailContainer = document.getElementById('product-detail');
+//Run if container exists
+if(detailContainer){
+	//read selected product index from sessionStorage
+	const selectedIndex = parseInt(sessionStorage.getItem('selectedProduct'), 10);
+	//makes sure the index is valid
+	if(!Number.isNaN(selectedIndex)){
+		//Read that product from the array
+		const[name,color,price,stock,imgSrc,desc] = tshirts[selectedIndex];
+		//Build the detail card
+		detailContainer.innerHTML=`
+		<div class="product-detail-card">
+			<img src="${imgSrc}" alt="${name} - ${color}">
+			<h3>${name} - ${color}</h3>
+			<p>${desc}</p>
+			<p><strong>${price}</strong></p>
+			<p class="stock-status ${stock}"> ${stock.replace(/-/g, ' ')}</p>
+			<button class="buy-button" onclick="addToCart(${selectedIndex})">Add to Cart</button>
+		</div>`;
+	}
+	else{
+		//If no product was selected
+		detailContainer.innerHTML = '<p> No product selected</p>';
+	}
+}
