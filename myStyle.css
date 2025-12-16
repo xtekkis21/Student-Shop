@@ -193,6 +193,12 @@ main{
 
 /*PRODUCT PAGE*/
 
+.filter-bar{
+	display:flex;
+	align-items:center;
+	gap:0.5em;
+}
+
 .product-content{
 	max-width:60em;
 	margin:2em auto;
@@ -439,6 +445,10 @@ main{
 	
 	.hamburger{
 		display:flex;
+	}
+	
+		.filter-bar label{
+		font-size:0.9em;
 	}
 	
 	.product-container{
