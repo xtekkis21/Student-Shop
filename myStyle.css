@@ -320,3 +320,85 @@ main{
 	font-size:0.9em;
 	cursor:pointer;
 }
+
+/*CART PAGE*/
+
+.cart-main{
+	max-width:60em;
+	margin:2.5em auto;
+	padding:0 1.25em 3.75em;
+	background-color:white;
+}
+
+.qty-btn{
+	padding:0.1em 0.4em;
+	margin:0 0.2em;
+	font-size:0.8em;
+	cursor:pointer;
+}
+
+.qty-value{
+	min-width:1.5em;
+	display:inline-block;
+	text-align:center;
+}
+
+.cart-heading{
+	font-size:1.6em;
+	color:#F2BE1A;
+	margin-bottom:0.5em;
+}
+
+.cart-intro{
+	margin-bottom:1em;
+	font-size:0.9em;
+}
+
+.cart-controls{
+	margin-bottom:1em;
+	font-size:0.9em;
+}
+
+.cart-controls input{
+	padding:0.2em 0.4em;
+	margin-left:0.5em;
+	margin-right:0.5em;
+}
+
+.cart-controls button{
+	padding:0.25em 0.8em;
+	cursor:pointer;
+}
+
+.cart-table{
+	width:100%;
+	border-collapse:collapse;
+	font-size:0.9em;
+}
+
+.cart-table th,
+.cart-table td{
+	padding:0.4em 0.6em;
+	border-bottom:1px solid #C7CBDA;
+	text-align:left;
+}
+
+.cart-table img{
+	width:3em;
+	height:auto;
+}
+
+.cart-summary{
+	text-align:right;
+	font-weight:bold;
+}
+
+.clear-cart-button{
+	margin-top:0.8em;
+	padding:0.3em 0.9em;
+	background-color:#BE1622;
+	color:white;
+	border:none;
+	cursor:pointer;
+	font-size:0.85em;
+}
