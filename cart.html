@@ -39,10 +39,26 @@
 			<input type="text" id="discount-code" placeholder="Enter code">
 			<Button id="apply-discount">Apply</button>
 		</div>
+
+		<div class="cart-table-wrapper"> 
+			<table class="cart-table" id="cart-table"> <!--table to place products-->
+				<thead>
+					<tr>
+					<th>Quantity</th>
+					<th>Item</th>
+					<th>Product</th>
+					<th>Price</th>
+					<th>Discount</th>
+					<th>Total</th>
+					<th></th>
+					</tr>
+				</thead>
+				<tbody id="cart-body"> <!--used in js to create cart rows-->
+				</tbody>
+			</table>
+		</div>
 	</main>
 
-
-	
 	<footer class="footer"> <!--page footer includes link, contact and location-->
 		<div class="footer-left">
 			<h3>Links</h3>
