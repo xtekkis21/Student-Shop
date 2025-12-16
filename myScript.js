@@ -43,6 +43,8 @@ if(products){ //only running if we are on the products page
 			
 			//create the product card
 			const card=document.createElement('div');
+			//check if it should have a buy/add to cart button
+			const canBuy = !stockLower.includes('out');
 			card.className='product-itself';
 			
 			//build the html inside of js
@@ -55,7 +57,7 @@ if(products){ //only running if we are on the products page
 			</p>
 			<p><strong>${price}</strong></p>
 			<p class="stock-status ${stock}">${stock.replace(/-/g, ' ')}</p>
-			<button class="buy-button" onclick="addToCart(${index})">Add to Cart</button>
+			${canBuy ? `<button class="buy-button" onclick="addToCart(${index})">Add to Cart</button>`:``}
 			`;
 			
 			//Add this card into the products
@@ -96,6 +98,8 @@ if(detailContainer){
 	if(!Number.isNaN(selectedIndex)){
 		//Read that product from the array
 		const[name,color,price,stock,imgSrc,desc] = tshirts[selectedIndex];
+		//check if it should have a buy/add to cart button
+		const canBuy = !stock.toLowerCase().includes('out');
 		//Build the detail card
 		detailContainer.innerHTML=`
 		<div class="product-detail-card">
@@ -104,7 +108,8 @@ if(detailContainer){
 			<p>${desc}</p>
 			<p><strong>${price}</strong></p>
 			<p class="stock-status ${stock}"> ${stock.replace(/-/g, ' ')}</p>
-			<button class="buy-button" onclick="addToCart(${selectedIndex})">Add to Cart</button>
+			${canBuy ? `<button class="buy-button"
+			onclick="addToCart(${selectedIndex})">Add to Cart</button>` : ``}
 		</div>`;
 	}
 	else{
