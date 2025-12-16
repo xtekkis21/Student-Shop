@@ -71,3 +71,16 @@ if(products){ //only running if we are on the products page
 		});
 	}
 }
+
+//back to top button
+const backToTop = document.querySelector('.back-to-top');
+//show and hide the button
+if(backToTop){
+	window.addEventListener('scroll', ()=> {
+		if (window.scrollY > 300){
+			backToTop.style.display = 'block';
+		} else {
+			backToTop.style.display = 'none';
+		}
+	});
+}
