@@ -112,3 +112,34 @@ if(detailContainer){
 		detailContainer.innerHTML = '<p> No product selected</p>';
 	}
 }
+
+//CART STORAGE
+
+//read card array from localStorage or return the empty array
+function getCart(){
+	const raw = localStorage.getItem('cart');
+	return raw ? JSON.parse(raw) : [];
+}
+
+//save the card array on the localStorage
+function saveCart(cart){
+	localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+//add a product to the cart or increase quantity if it already exists
+function addToCart(index){
+	const cart = getCart();
+	const itemIndex = cart.findIndex(entry => entry.index === index);
+	//if it already exists in cart, increase quantity
+	if(itemIndex>=0){
+		cart[itemIndex].qty +=1;
+	}else{
+		//add a new line with quantiry of 1
+		cart.push({ index: index, qty: 1});
+	}
+	//update cart
+	saveCart(cart);
+	//pop up window for user
+	const [name,color] = tshirts [index];
+	alert(`${name} - ${color} added to cart.`);
+}
