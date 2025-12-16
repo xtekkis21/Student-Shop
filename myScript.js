@@ -143,3 +143,134 @@ function addToCart(index){
 	const [name,color] = tshirts [index];
 	alert(`${name} - ${color} added to cart.`);
 }
+
+//CART PAGE
+
+const cartBody = document.getElementById('cart-body');
+const cartTotal = document.getElementById('cart-total');
+const discountInput = document.getElementById('discount-code');
+const applyDiscountBtn = document.getElementById('apply-discount');
+
+//Run only while on cart page
+if(cartBody && cartTotal){
+	let currentDiscountCode = '';
+	//complete row data for a cart item
+	function calculateRow(item){
+		const [name, color, priceStr, , imgSrc] = tshirts[item.index];
+		const unitPrice = parseFloat(priceStr.replace('£', ''));
+		let qty = item.qty;
+		let discountText = '';
+		
+		//code BOGO = buy one get one free
+		
+		if(currentDiscountCode === 'BOGO'){
+			const free = Math.floor(qty/2);
+			const chargeQty = qty - free;
+			if(free > 0){
+				discountText = `Buy one get one free (${free} free)`;
+			}
+			//in case of dicount
+			return {name, color, imgSrc, unitPrice, qty, discountText, lineTotal: chargeQty * unitPrice};
+		}
+		//no discount 
+		return{name, color, imgSrc, unitPrice, qty, discountText, lineTotal: qty * unitPrice};
+	}
+	
+	//render the cart table and total
+	function renderCart(){
+		const cart = getCart();
+		cartBody.innerHTML = '';
+		let orderTotal = 0;
+		//if cart is empty, show the message and the total
+		if(cart.length === 0){
+			cartBody.innerHTML ='<tr><td colspan="7">Your cart is empty.</td></tr>';
+			cartTotal.textContent = 'Order total: £0.00';
+			return;
+		}
+		
+		//build a row per cart item
+		cart.forEach((item, idx) => {
+			const rowData = calculateRow(item);
+			const tr = document.createElement('tr');
+			//ordertotal will be added at the end
+			orderTotal += rowData.lineTotal;
+			
+			tr.innerHTML =`
+			<td>
+				<button class="qty-btn minus" data-index="${idx}">-</button>
+				<span class="qty-value">${rowData.qty}</span>
+				<button class="qty-btn plus" data-index="${idx}">+</button>
+			</td>
+			<td>
+			<a href="item.html" onclick="sessionStorage.setItem('selectedProduct', ${item.index})">
+			<img src="${rowData.imgSrc}" alt="${rowData.name} - ${rowData.color}"><br>${rowData.color}</a>
+			</td>
+			<td>${rowData.name}</td>
+			<td>£${rowData.unitPrice.toFixed(2)}</td>
+			<td>${rowData.discountText}</td>
+			<td>£${rowData.lineTotal.toFixed(2)}</td>
+			<td><button data-remove="${idx}">Remove</button></td>
+			`;
+			cartBody.appendChild(tr);
+		});
+		
+		//update order total text
+		cartTotal.textContent = `Order total: £${orderTotal.toFixed(2)}`;
+	}
+	
+	//discount code
+	if(applyDiscountBtn){
+		applyDiscountBtn.addEventListener('click', () => {
+			//store the code in uppercase and re-render
+			currentDiscountCode = discountInput.value.trim().toUpperCase();
+			renderCart();
+		});
+	}
+	
+	//remove item button
+	cartBody.addEventListener('click', (e) => {
+		const removeBtn = e.target.closest('button[data-remove]');
+		if(removeBtn){
+			const indexInCart = parseInt(removeBtn.getAttribute('data-remove'), 10);
+			const cart = getCart();
+			cart.splice(indexInCart, 1);
+			saveCart(cart);
+			renderCart();
+			return;
+		}
+		
+		//qty +/- buttons
+		const qtyBtn = e.target.closest('.qty-btn');
+		if(!qtyBtn) return;
+		
+		const index = parseInt(qtyBtn.dataset.index, 10);
+		const cart = getCart();
+		if(!cart[index]) return;
+		
+		if(qtyBtn.classList.contains('plus')){
+			//increase quantity
+			cart[index].qty += 1;
+		} else if (qtyBtn.classList.contains('minus')){
+			//decrease quantity or remove line if it's 1
+			if(cart[index].qty > 1){
+				cart[index].qty -= 1;
+			} else {
+				cart.splice(index,1)
+			}
+		}
+		saveCart(cart);
+		renderCart();
+	});
+	
+	//initial render when page loads
+	renderCart();
+}
+
+//clear card button
+const clearCartBtn = document.getElementById('clear-cart');
+if(clearCartBtn){
+	clearCartBtn.addEventListener('click', () => {
+		localStorage.removeItem('cart');
+		renderCart();
+	});
+}
