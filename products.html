@@ -31,17 +31,22 @@
 	</nav>
 
 	<main>
-	<div class="filter-bar"> <!--filter menu to select through stock options-->
-		<label for="stock-filter">Filter:</label>
-		<select id="stock-filter">
-			<option value="all">All</option>
-			<option value="in">In stock</option>
-			<option value="out">Out of stock</option>
-		</select>	
-	</div>
+		<div class="filter-bar"> <!--filter menu to select through stock options-->
+			<label for="stock-filter">Filter:</label>
+			<select id="stock-filter">
+				<option value="all">All</option>
+				<option value="in">In stock</option>
+				<option value="out">Out of stock</option>
+			</select>	
+		</div>
 
-  <footer class="footer"> <!--page footer includes link, contact and location-->
-	  <div class="footer-left">
+		<div class="product-content"> <!--the grid where all products are placed-->
+			<div id="products" class="product-container"></div> <!--used by js to place products individualy-->
+		</div>
+	</main>
+
+  	<footer class="footer"> <!--page footer includes link, contact and location-->
+		<div class="footer-left">
 			<h3>Links</h3>
 			<a href="https://www.lancashiresu.co.uk/" target="_blank">Student's Union</a>
 		</div>
