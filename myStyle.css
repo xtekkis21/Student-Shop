@@ -23,3 +23,88 @@ main{
 	flex:1;
 }
 
+/*HEADER*/
+
+.header{
+	background-color:#BE1622;
+	color:white;
+	display:flex;
+	position:sticky;
+	top:0;
+	padding:0.8em 2.5em;
+	z-index:1000; /*everything is pushed forward*/
+	align-items:center;
+	justify-content:space-between;
+}
+
+.header-left{
+	display:flex;
+	align-items:center;
+	gap:1em;
+}
+
+.uclan-logo{
+	height:3em;
+}
+
+.page-title{
+	font-size:1.4em;
+	font-weight:600;
+}
+
+.header-nav{
+	display:flex;
+	gap:1.5em;
+}
+
+.header-nav a{
+	color:white;
+	text-decoration:none;
+	font-size:1em;
+}
+
+.header-nav a:hover{
+	text-decoration:none;
+	color:#C7CBDA;
+}
+
+.desktop-nav{
+	display:flex;
+	gap:2em;
+}
+
+.mobile-nav{
+	display:none;
+	background-color:#C7CBDA;
+	width:100%;
+	padding:0.75em 1.25em;
+}
+
+.mobile-nav a{
+	color:#BE1622;
+	text-decoration:none;
+	margin-right:2em;
+	font-size:0.9em;
+}
+
+.mobile-nav a:hover{
+	text-decoration:underline;
+}
+
+.mobile-nav.show{
+	display:block;
+}
+
+/*HAMBURGER BUTTON*/
+.hamburger{
+	display:none;
+	flex-direction:column;
+	gap:0.25em;
+	cursor:pointer;
+}
+
+.hamburger span{
+	height:0.2em;
+	width:1.5em;
+	background-color:#34516C;
+}
