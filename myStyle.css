@@ -1,1 +1,25 @@
+/*GENERAL*/
+
+*{
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
+}
+
+html, body{
+	height:100%;
+}
+
+body{
+	line-height: 1.5;
+	font-family:Arial, Helvetica, sans-serif;
+	color:black;
+	font-size:1em;
+	display:flex;
+	flex-direction:column;
+}
+/*used to push the footer down*/
+main{
+	flex:1;
+}
 
