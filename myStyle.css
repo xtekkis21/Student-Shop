@@ -108,3 +108,33 @@ main{
 	width:1.5em;
 	background-color:#34516C;
 }
+
+/*FOOTER*/
+
+.footer{
+	background-color:#34516C;
+	color:white;
+	display:flex;
+	justify-content:space-between;
+	padding:1.5em 2.5em;
+	flex-wrap:wrap;
+	width:100%;
+}
+
+.footer div{
+	margin-bottom:0.6em;
+}
+
+.footer h3{
+	font-size:1.2em;
+	margin-bottom:0.5em;
+}
+
+.footer a{
+	color:white;
+	text-decoration:none;
+}
+
+.footer a:hover{
+	text-decoration:underline;
+}
